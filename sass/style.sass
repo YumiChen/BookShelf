@@ -1,0 +1,377 @@
+$orange: rgb(249, 175, 57)
+$brown: rgb(99, 65, 48)
+$blue: rgba(76, 206, 224,.7)
+
+$breakpoints: ("phone":400px,"phone-wide":480px,"phablet":560px,"tablet-small": 640px,"tablet":768px,"tablet-wide":1024px,"desktop":1248px,"desktop-wide": 1440px)
+
+@mixin mq($width, $type: min)
+  @if map_has_key($breakpoints, $width)
+    $width: map_get($breakpoints, $width)
+    @if $type == max
+      $width: $width - 1px
+    @media only screen and (#{$type}-width: $width)
+      @content
+
+*
+  // border: solid 1px
+  box-sizing: border-box
+  position: relative
+  font-family: Ubuntu, 微軟正黑體
+  text-decoration: none
+  color: $brown
+  transition: all .4s
+
+html, body
+  margin: 0
+  min-height: 100vh
+  overflow-x: hidden
+body
+  padding: 3em 0 2em 0
+  // background-color: #e1eff2
+  background-image: url(https://s26.postimg.org/4v95smc95/fog-1535201_1920.jpg)
+  background-size: cover
+  background-repeat: no-repeat
+  &::-webkit-scrollbar-track
+    border: 1px solid $blue
+    background-color: rgba(255,255,255,0.2)
+  &::-webkit-scrollbar
+    width: 6px
+    background-color: rgba(255,255,255,0.2)
+  &::-webkit-scrollbar-thumb
+    background-color: $blue
+  
+p
+  margin: 0
+  text-align: center
+    
+#container
+  
+.searchedBooks
+  display: flex
+  flex-wrap: wrap
+  justify-content: space-around
+  & .book
+    // padding: 1em
+    width: 15vw
+    overflow: hidden
+    height: 22vw
+    margin: 1vw 1vw
+    min-height: 15em
+    background-color: rgba(255,255,255,.5)
+    border-radius: 10px
+    &:hover
+      box-shadow: 1px 1px 2px 2px rgba(0,0,0,.1)
+    & p
+      font-size: .5em
+      width: 70%
+      margin: 0 auto
+    & .bookdes
+      transform: translateY(-20%)
+      // & p:nth-child(1)
+        // font-weight: bold
+    & .cover
+      margin: 0 auto
+      box-shadow: 1px 1px 2px 2px rgba(0,0,0,.1)
+      width: 70%
+      height: 60%        
+      background-size: 100% 100%
+      background-repeat: no-repeat
+      // margin-bottom: .5em
+      
+        
+.searchBar
+  margin: 1em auto
+  text-align: center
+  width: 50%
+  padding: 0.5em
+  background-color: $blue
+  white-space: nowrap
+  border-radius: 5px
+  box-shadow: 0px 1px 5px 1.5px rgba(0,0,0,.1)
+  & i
+    width: 10%
+  & form
+    transform: translateX(-5%)
+    width: 80%
+  & i, form
+    color: white
+    display: inline-block
+    margin: 0.2em
+    vertical-align: middle
+    & input[type="text"]
+      width: 70%
+      border: 0
+      border-radius: 5px
+      padding: 0.25em 0.5em
+      box-shadow: inset 0px 1px 3px 1.5px rgba(0,0,0,.1)
+    & input[type="submit"]
+      width: 25%
+      vertical-align: middle
+      cursor: pointer
+      margin: 0 .3em  
+      background-color: white
+      border: none
+      border-radius: 5px
+      padding: 0.2em 1em
+      color: $blue
+      &:hover
+        background-color: $orange
+        color: white
+  
+.shelfName
+  color: skyblue
+  position: absolute
+  background-color: white
+  margin-left: 5vw
+  z-index: 1
+  padding: .1em 1em
+  border-radius: 10px 0 10px 0
+  box-shadow: 1px 1px 2px 2px rgba(0,0,0,.025)
+  
+.slick-prev
+.slick-next
+
+  
+.slick-slider
+  height: 30vh
+  border: solid 2px white
+  margin: .5em 5vw
+  border-radius: 10px
+  .slick-list
+    height: 100%
+    padding: .2em 2.5em
+    .slick-track
+      height: 100%
+      .slick-slide
+        height: 90%
+        // width: 5vw
+        // margin: .2em
+        .book
+          top: 0.8em
+          width: 60%
+          height: 100%
+          
+          // position: absolute
+          font-size: .5em
+          & .settings
+            & .cog
+              // top: 1.5em
+              // transform: translateX(-50%)
+              font-size: 3em
+              z-index: 1
+              position: absolute
+              cursor: pointer
+              right: 0
+              // right: -2em
+              &:hover
+                color: blue
+            & div
+              position: absolute
+              top: 2.2em
+              width: 90%
+              z-index: 2
+              // height: 100%
+              right: 0em
+              background-color: rgba(255,255,255,.9)
+              border: solid 1px 
+              & p
+                cursor: pointer
+                padding: .2em .5em
+                border-top: 1px dashed
+                &:hover
+                  background-color: skyblue
+                  color: white
+                  border-color: $brown
+              & p:nth-child(1)
+                border-top: 0px solid
+          & .cover
+            box-shadow: 1px 1px 2px 2px rgba(0,0,0,.2)
+            top: 1em
+            width: 100%
+            height: 80%
+            background-position: 50% 50%
+            background-size: 100% 100%
+            background-repeat: no-repeat
+  
+
+      
+.bookInfo
+  padding: 1.5em
+  .bookinfo_summary
+    background-color: rgba(255,255,255,.5)
+    padding: 1em
+    border-radius: .5em
+  .bookInfo_top
+    display: flex
+    .bookinfo_detail
+      padding: 1em
+      width: 60%
+      font-weight: bold
+      & p
+        margin: 0.2em auto .2em auto
+      & a
+        background-color: #e24724
+        color: white
+        padding: .2em 1em
+        border-radius: .7em
+      & .bookinfo_title
+        color: #e24724
+        font-size: 1.3em
+    .bookinfo_book
+      width: 40%
+      height: 33vw
+      .bookInfo_cover
+        position: absolute
+        box-shadow: 1px 1px 2px 2px rgba(0,0,0,.2)
+        top: 5%
+        left: 50%
+        transform: translateX(-50%)
+        width: 50%
+        height: 77%
+        background-size: 100% 100%
+        background-repeat: no-repeat
+        background-position: 50% 50%
+      
+.nav
+  font-size: 1.2em
+  background-color: $blue
+  padding: .5em 
+  position: fixed
+  z-index: 2
+  width: 100%
+  top: 0
+  box-shadow: 0px 0px 3px 1.5px rgba(0,0,0,.1)
+  
+  & a
+    color: white
+    text-decoration: none
+    font-family: Lobster
+  & .title
+    & i
+      color: white
+      margin: 0 0.2em
+  & .search
+    position: absolute
+    right: .5em
+    & i
+      color: white
+      margin: 0 0.2em
+      
+%btn
+  background-color: $orange
+  padding: .1em .5em
+  color: white
+  border-radius: 5px
+  margin: 0.1em
+
+.menu
+  text-align: right
+  position: fixed
+  right: 2em
+  bottom: 2em
+  z-index: 2
+  p
+    cursor: pointer
+    background-color: $orange
+    color: white
+    border-radius: 1em
+    text-align: right
+    padding: 0.5em 1em .5em 2em
+    margin: .5em 0 !important
+    box-shadow: 2.5px 2.5px 5px 1px rgba(0,0,0,.2)
+    &:hover
+      background-color: rgb(255, 50, 112)
+  .plus
+    cursor: pointer
+    color: white
+    font-size: 2em
+    background-color: rgb(255, 50, 112)
+    border-radius: 10em
+    padding: .25em .35em
+    text-shadow: 2px 2px 5px rgba(0,0,0,.5)
+    box-shadow: 2.5px 2.5px 5px 1px rgba(0,0,0,.5)
+
+.status
+  background-color: $orange
+  border-radius: 2em
+  color: white
+  padding: .2em 0em
+  width: 90%
+  margin: auto
+  
+// animation for css transition group
+.menu-enter 
+  transform: translateX(2em)
+  opacity: 0
+
+.menu-enter-active 
+  opacity: 1
+  transform: translateX(0em)
+
+.menu-leave 
+  opacity: 1
+
+.menu-leave-active 
+  opacity: 0
+  transform: translateX(1em)
+  
++mq('desktop',min)
+  .bookInfo
+    padding: 1.5em 8em
+  .bookInfo .bookInfo_top .bookinfo_book
+    // height: 30vh
+  .bookInfo .bookInfo_top .bookinfo_book .bookInfo_cover
+    height: 70%
+  .shelfPage
+    padding: 0 5em
+    min-height: 40em
+    min-width: 45em
+  .slick-slider .slick-list .slick-track .slick-slide .book
+    width: 50%
+    min-width: 10em
++mq('phone',max)
+  body,html
+    min-height: calc(100vw * 1.7)
+    min-width: 100vw
+    height: 100vh
+  #container
+    & .searchBar
+      width: 90%
+      & input[type="text"]
+        width: 60%
+    & .slick-slide
+      & .book
+        width: 60%
+    & .searchedBooks
+      & .book
+        width: 40%
+        height: 37vh
+        & p
+          font-size: .7em
+    & .bookInfo
+      & .bookInfo_top
+        display: block
+        & .bookinfo_detail, .bookInfo_cover
+          width: 100%
+        & .bookinfo_book
+          width: 35vw
+          height: calc(35vw * 1.8)
+          margin: 0 auto
+          & .bookInfo_cover
+            min-width: 40vw
+            height: 85%
+    & .status
+      left: 50%
+      transform: translateX(-50%)
+      width: 110%
+
+.swal2-buttonswrapper
+  button
+    border: 0px
+    margin: 0 1em
+    padding: 0.5em 1.2em
+    background-color: $orange
+    border-radius: 1em
+    color: white
+    &:hover
+      background-color: red
