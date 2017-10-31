@@ -50,6 +50,9 @@ p
   display: flex
   flex-wrap: wrap
   justify-content: space-around
+  & .searchHint
+    width: 100vw
+    margin: .5em 0
   & .book
     // padding: 1em
     width: 15vw
@@ -209,7 +212,7 @@ p
       font-weight: bold
       & p
         margin: 0.2em auto .2em auto
-      & a
+      & .previewLink
         background-color: #e24724
         color: white
         padding: .2em 1em
@@ -241,7 +244,6 @@ p
   width: 100%
   top: 0
   box-shadow: 0px 0px 3px 1.5px rgba(0,0,0,.1)
-  
   & a
     color: white
     text-decoration: none
@@ -270,7 +272,7 @@ p
   right: 2em
   bottom: 2em
   z-index: 2
-  p
+  & p
     cursor: pointer
     background-color: $orange
     color: white
@@ -281,7 +283,7 @@ p
     box-shadow: 2.5px 2.5px 5px 1px rgba(0,0,0,.2)
     &:hover
       background-color: rgb(255, 50, 112)
-  .plus
+  & .plus
     cursor: pointer
     color: white
     font-size: 2em
@@ -290,6 +292,8 @@ p
     padding: .25em .35em
     text-shadow: 2px 2px 5px rgba(0,0,0,.5)
     box-shadow: 2.5px 2.5px 5px 1px rgba(0,0,0,.5)
+  & span a
+    color: white
 
 .status
   background-color: $orange
@@ -315,6 +319,87 @@ p
   opacity: 0
   transform: translateX(1em)
   
+// signUp
+.sign
+  font-size: 1.2em
+  text-align: center
+  display: inline-block
+  left: 50%
+  transform: translateX(-50%)
+  & h2
+    background-color: $blue
+    color: white
+    padding: 0.1em 0
+    border-radius: .3em
+  & div
+    text-align: right
+    margin: .4em auto
+  & label
+    display: inline-block
+    width: 5em
+    text-align: left
+  & input
+    border: solid 1px #c4c8ce
+    border-radius: .3em
+    padding: 0.3em
+  & input[type="submit"]
+    background-color: #f9af39
+    border: none
+    color: white
+    padding: .2em 1em
+    margin: .5em 0
+    font-size: .9em
+    cursor: pointer
+    &:hover
+      background-color: #e24724
+  & p span
+    color: #f9af39
+    cursor: pointer
+    text-decoration: underline
+    &:hover
+      color: #e24724
+  & .hint
+    color: red
+    font-size: .7em
+    text-align: right
+    animation: fadeIn 1s 1 both
+
+@keyframes fadeIn
+  0%
+    opacity: 0
+  100%
+    opacity: 1
+
+// loading animation
+.dotContainer
+  width: 1vw
+  height: 1vw
+  position: fixed
+  top: 50%
+  left: 60%
+  transform: translate(-50%,-50%)
+
+@for $i from 1 through 10
+  .dot:nth-child(#{$i})
+    width: .5em
+    height: .5em
+    border-radius: 10em
+    background-color: white
+    position: absolute
+    transform-origin: -400% -400%
+    transform: rotate(#{$i*36}deg)
+    animation: opa#{$i} 1s infinite both 
+
+  @keyframes opa#{$i}
+    0%
+      opacity: .5
+    #{($i - 1) * 10}%
+      opacity: .5
+    #{$i * 10}%
+      opacity: 1
+    #{($i + 1) * 10}%
+      opacity: .5
+
 +mq('desktop',min)
   .bookInfo
     padding: 1.5em 8em
