@@ -1,6 +1,7 @@
 $orange: rgb(249, 175, 57)
 $brown: rgb(99, 65, 48)
 $blue: rgba(76, 206, 224,.7)
+$red: #e24724
 
 $breakpoints: ("phone":400px,"phone-wide":480px,"phablet":560px,"tablet-small": 640px,"tablet":768px,"tablet-wide":1024px,"desktop":1248px,"desktop-wide": 1440px)
 
@@ -50,6 +51,25 @@ p
   display: flex
   flex-wrap: wrap
   justify-content: space-around
+  & .clear
+    background-color: $blue
+    color: white
+    border-radius: .5em
+    cursor: pointer
+    padding: .2em .5em
+    margin: 0 .5em
+    &:hover
+      background-color: $orange
+  & .scrollToTop
+    z-index: 10
+    position: fixed
+    bottom: .5em
+    right: .5em
+    color: $blue
+    font-size: 3.5em
+    cursor: pointer
+    &:hover
+      color: $orange
   & .searchHint
     width: 100vw
     margin: .5em 0
@@ -121,6 +141,18 @@ p
         background-color: $orange
         color: white
   
+.shelfPage
+  .options
+    text-align: right
+    width: 80vw
+    margin: 0 auto
+    .logout
+      cursor: pointer
+      color: $brown
+      text-decoration: underline
+      &:hover
+        color: $red
+
 .shelfName
   color: skyblue
   position: absolute
@@ -213,12 +245,12 @@ p
       & p
         margin: 0.2em auto .2em auto
       & .previewLink
-        background-color: #e24724
+        background-color: $red
         color: white
         padding: .2em 1em
         border-radius: .7em
       & .bookinfo_title
-        color: #e24724
+        color: $red
         font-size: 1.3em
     .bookinfo_book
       width: 40%
@@ -351,18 +383,20 @@ p
     font-size: .9em
     cursor: pointer
     &:hover
-      background-color: #e24724
+      background-color: $red
   & p span
-    color: #f9af39
+    color: $red
     cursor: pointer
     text-decoration: underline
     &:hover
-      color: #e24724
+      color: #f9af39
   & .hint
-    color: red
+    color: $red
     font-size: .7em
     text-align: right
     animation: fadeIn 1s 1 both
+    & i
+      color: $red
 
 @keyframes fadeIn
   0%
@@ -376,7 +410,7 @@ p
   height: 1vw
   position: fixed
   top: 50%
-  left: 60%
+  left: 50%
   transform: translate(-50%,-50%)
 
 @for $i from 1 through 10
@@ -399,6 +433,11 @@ p
       opacity: 1
     #{($i + 1) * 10}%
       opacity: .5
+
+.clickable
+  cursor: pointer
+  &:hover
+    color: $orange
 
 +mq('desktop',min)
   .bookInfo
@@ -459,4 +498,4 @@ p
     border-radius: 1em
     color: white
     &:hover
-      background-color: red
+      background-color: $red

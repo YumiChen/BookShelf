@@ -5,7 +5,7 @@ import action_addReadingBooks from "../actions/action_addReadingBooks";
 import action_addFinishedBooks from "../actions/action_addFinishedBooks";
 import action_addWannaReadBooks from "../actions/action_addWannaReadBooks";
 import action_removeBooks from "../actions/action_removeBooks";
-
+import promptAlert from "../functions/promptAlert";
 
 class Settings extends Component{
     constructor(props){
@@ -16,40 +16,43 @@ class Settings extends Component{
       this.setState({showDrop:!this.state.showDrop});
     }
     updateReadingBooks(event){
-    this.props.addReadingBooks(event);
-      this.props.removeBooks(event);
+      event.persist();
+      const self = this, e = event ;
       document.getElementsByClassName('title')[0].click();
       // this.forceUpdate();
-      // promptAlert("Confirmation","Do you want to move this book to readings section?","Your bookshelf is updated :)!","The action is canceled!",()=>{
-      // this.props.addReadingBooks(event);
-      // this.props.removeBooks(event);
-      // });
+      promptAlert("Confirmation","Do you want to move this book to readings section?","Your bookshelf is updated :)!","The action is canceled!",()=>{
+        self.props.addReadingBooks(e);
+        self.props.removeBooks(e);
+      });
     }
     updateFinishedBooks(event){
-      this.props.addFinishedBooks(event);
-     this.props.removeBooks(event);
+      event.persist();
+      const self = this, e = event ;
       document.getElementsByClassName('title')[0].click();
     // this.forceUpdate();
-      // promptAlert("Confirmation","Do you want to move this book to finished section?","Your bookshelf is updated :)!","The action is canceled!",()=>{     this.props.addFinishedBooks(event);
-      // this.props.removeBooks(event);
-      // });
+     promptAlert("Confirmation","Do you want to move this book to finished section?","Your bookshelf is updated :)!","The action is canceled!",()=>{     this.props.addFinishedBooks(event);
+      self.props.addFinishedBooks(e);
+      self.props.removeBooks(e);
+     });
     }
     updateWannaReadBooks(event){
-      this.props.addWannaReadBooks(event);
-      this.props.removeBooks(event);
+      event.persist();
+      const self = this, e = event ;
       document.getElementsByClassName('title')[0].click();
       //this.forceUpdate();
-      // promptAlert("Confirmation","Do you want to move this book to wishlist section?","Your bookshelf is updated :)!","The action is canceled!",()=>{         this.props.addWannaReadBooks(event);
-      // this.props.removeBooks(event);
-      // });
+      promptAlert("Confirmation","Do you want to move this book to wishlist section?","Your bookshelf is updated :)!","The action is canceled!",()=>{         this.props.addWannaReadBooks(event);
+        self.props.addWannaReadBooks(e);
+        self.props.removeBooks(e);
+      });
     }
     removeBooks(event){
-      this.props.removeBooks(event);
+      event.persist();
+      const self = this, e = event ;
       document.getElementsByClassName('title')[0].click();
       // this.forceUpdate();
-      // promptAlert("Are you sure?","This action can't be reverted!","The book is deleted!","Your book is still safe!",()=>{
-      // this.props.removeBooks(event);
-      // });
+      promptAlert("Are you sure?","This action can't be reverted!","The book is deleted!","Your book is still safe!",()=>{
+         self.props.removeBooks(e);
+      });
     }
     render(){
       const group = this.props.group,

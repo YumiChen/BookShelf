@@ -23,7 +23,8 @@ import {setData, loadData} from "../firebaseData";
 
 
 const reducers = {
-    reducer_index:(state=31,action)=>{
+    reducer_index:
+    (state=31,action)=>{
       if(action.type == "SETINDEX"){
         let num = state;
         return num += 30;
@@ -42,7 +43,10 @@ const reducers = {
       (state = null, action)=>{
         if(action.type == "LOGIN" && action.payload!=null){
           return action.payload;
-        }else{
+        }else if(action.type == "LOGOUT"){
+          return null;
+        }
+        else{
           // initilization
           return state;
         }
@@ -55,6 +59,8 @@ const reducers = {
         let result = state;
         result.items = result.items.concat(action.payload);
         return result;
+      }else if(action.type=="RESETSEARCHEDBOOKS"){
+        return {items:[]};
       }else{
         return state;
         }

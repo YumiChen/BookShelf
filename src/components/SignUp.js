@@ -4,13 +4,15 @@ import {connect} from "react-redux";
 import action_currentUid from "../actions/action_currentUid";
 import store from "./store";
 import action_setBooks from "../actions/action_setBooks";
+import LoadingAnimation from "./LoadingAnimation";
 
 class SignUp extends Component{
     constructor(props){
       super(props);
       this.state = {signUp: true,
         emailhint:"",
-        passwordhint:""
+        passwordhint:"",
+        loading: false
       };
     }
     signUp(event){   
@@ -19,19 +21,20 @@ class SignUp extends Component{
         emailhint: "",
         passwordhint:""
       });
-      const email = document.getElementById("email").value,password = document.getElementById("password").value,
+      const email = document.getElementById("email").value,
+            password = document.getElementById("password").value,
             setCurrentUid = this.props.setCurrentUid,
             self = this;
       let pass = true;
       
       // check if fields are valid
       if(email===""){
-        setState({
+        this.setState({
             emailhint:"email is not inputted"
         });
         pass = false;
       }if(password === ""){
-        setState({
+        this.setState({
           passwordhint:"password is not inputted"
         });
         pass = false;
@@ -47,6 +50,7 @@ class SignUp extends Component{
       }
       if(!pass) return;
       
+      this.setState({loading: true});
       firebase.auth().createUserWithEmailAndPassword(email, password)
       .then(function(user) {
           // Success
@@ -55,6 +59,7 @@ class SignUp extends Component{
           store.dispatch(action_setBooks("readingBooks"));
           store.dispatch(action_setBooks("finishedBooks"));
           store.dispatch(action_setBooks("wannaReadBooks"));
+          self.setState({loading: false});
           // setTimeout(()=>{
           //   setCurrentUid("login");
           // },1000);
@@ -71,6 +76,7 @@ class SignUp extends Component{
           case "auth/email-already-in-use":
             self.setState({emailhint: "this email is already registerd"});
           }
+          self.setState({loading: false});
         });
     }
     signIn(event){
@@ -82,24 +88,20 @@ class SignUp extends Component{
       const email = document.getElementById("email").value,password = document.getElementById("password").value,
             setCurrentUid = this.props.setCurrentUid,
             self = this;
-      if(email==="" && password===""){
-        this.setState({
-          emailhint:"email is not inputted",
-          passwordhint:"password is not inputted"
-        });
-        return;
-      }else if(email===""){
+      let pass = true;
+      if(email===""){
         this.setState({
           emailhint:"email is not inputted"
-        });
-        return;
-      }else if(password === ""){
+        });     
+        pass = false;
+      }if(password === ""){
         this.setState({
           passwordhint:"password is not inputted"
-        });
-        return;
+        });            
+        pass = false;
       }
-      
+      if(!pass) return;
+      this.setState({loading: true});
       firebase.auth().signInWithEmailAndPassword(email, password)
       .then(function(user) {
         // Success 
@@ -109,6 +111,7 @@ class SignUp extends Component{
         store.dispatch(action_setBooks("readingBooks"));
         store.dispatch(action_setBooks("finishedBooks"));
         store.dispatch(action_setBooks("wannaReadBooks"));
+        self.setState({loading: false});
         // setTimeout(()=>{
         //   setCurrentUid("login");
         // },1000);
@@ -117,12 +120,15 @@ class SignUp extends Component{
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
-        self.setState({passwordhint: "password is incorrect"});
+        self.setState({passwordhint: "password is incorrect",loading: false});
         });
     }
     changeUI(event){
       const val = (event.target.getAttribute("data-val") === "true");
-      
+      this.setState({
+        emailhint: "",
+        passwordhint:""
+      });
       this.setState({signUp: val});
     }
     render(){
@@ -135,16 +141,17 @@ class SignUp extends Component{
       
       return (<form className="sign" onSubmit={signUp?this.signUp:this.signIn
             }>
+            {this.state.loading?<LoadingAnimation/>:null}
           <h2>{signUp?"Sign Up":"Sign In"}</h2>
           <div>
           <label>Email: </label>
           <input type="email" placeholder="請輸入信箱..." id="email"/>
-          <p className="hint">{this.state.emailhint}</p>
+          {this.state.emailhint?<p className="hint">  <i className="fa fa-exclamation-circle" aria-hidden="true"/>{" " +this.state.emailhint}</p>:null}
           </div>
           <div>
           <label>Password: </label>
           <input type="password" placeholder="請輸入密碼..." id="password"/>
-          <p className="hint">{this.state.passwordhint}</p>
+          {this.state.passwordhint?<p className="hint">  <i className="fa fa-exclamation-circle" aria-hidden="true"/>{" "+this.state.passwordhint}</p>:null}
           </div>
           <input type="submit" value="送出" />
           {signUp?
@@ -154,7 +161,7 @@ class SignUp extends Component{
     }
   }
 
- 
+  
   const mapDispatchToProps = (dispatch)=>{
     return bindActionCreators({
       setCurrentUid: action_currentUid

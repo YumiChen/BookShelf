@@ -2,6 +2,11 @@ import {loadData} from "../firebaseData";
 
 const action_setBooks = (type,data)=>{
     switch(type){
+      case "resetSearchedBooks":
+        return {
+          type: "RESETSEARCHEDBOOKS",
+          payload: null
+        };
       case "readingBooks":
         return (dispatch)=>{
           loadData("readingBooks",(data)=>{

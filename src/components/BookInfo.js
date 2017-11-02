@@ -8,8 +8,16 @@ import action_addReadingBooks from "../actions/action_addReadingBooks";
 import action_addFinishedBooks from "../actions/action_addFinishedBooks";
 import action_addWannaReadBooks from "../actions/action_addWannaReadBooks";
 
-let BookInfo = (props)=>{ 
-    const info = props.currentBook.volumeInfo;
+class BookInfo extends Component{
+  constructor(props){
+    super(props);
+  }
+  componentDidMount(){
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
+  }
+  render(){
+    const props = this.props,
+          info = props.currentBook.volumeInfo;
     let cover = props.currentBook.volumeInfo.imageLinks?
         { backgroundImage: 'url(' + props.currentBook.volumeInfo.imageLinks.thumbnail + ')'
   }:null,
@@ -93,6 +101,7 @@ let BookInfo = (props)=>{
    {props.currentBook.volumeInfo.description}
         </div>
       </div>)
+    }
   }
   
   const BookInfo_mapStateToProps=(state)=>{
