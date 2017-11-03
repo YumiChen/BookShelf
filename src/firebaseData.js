@@ -10,17 +10,6 @@ const config = {
 app = firebase.initializeApp(config),
 db = app.database();
 
-// firebase.auth().onAuthStateChanged(function(user) {
-//     console.log("auth state changed");
-//     if (user) {
-//       // User is signed in. store token in session storage
-//       sessionStorage.setItem("user",user);
-      
-//     } else {
-//       // No user is signed in.
-//     }  
-// });
-
 function setData(data){
   const uid = sessionStorage.getItem("user");
   db.ref('/books/' + uid)

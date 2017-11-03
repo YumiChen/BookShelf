@@ -16,7 +16,6 @@ store.subscribe(()=>{
   if(action == "ADDFINISHED" || action == "ADDREADING" ||
       action == "ADDWANNAREAD" || action == "REMOVEREADING" ||
       action == "REMOVEFINISHED" || action == "REMOVEWANNAREAD"){
-        console.log("save");
         saveStore(store.getState());
   }
 });

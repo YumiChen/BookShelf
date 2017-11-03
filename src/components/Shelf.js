@@ -19,7 +19,7 @@ let Shelf =(props)=>{
   let books = []; 
     if( Object.prototype.toString.call( props.books ) === '[object Array]'){ 
       books = props.books.map((book,index)=>{ 
-  return (<div><Book 
+  return (<div key={index}><Book 
                  key={index} 
                  name={index} 
                  data-index={index} 

@@ -131,7 +131,6 @@ class SearchPage extends Component{
       this.clear = this.clear.bind(this);
       let books = [], total = this.props.searchedBooks.totalItems;
 
-      console.log("search page");
         if(this.props.searchedBooks.items){
           books = this.props.searchedBooks.items.map((book,index)=>{
             return <Book key={index} 

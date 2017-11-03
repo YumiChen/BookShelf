@@ -4,10 +4,10 @@ const action_addFinishedBooks = (event)=>{
     const group = event.target.getAttribute("data-group"),   id=event.target.getAttribute("name");
     switch(group){
         case "current": 
-    const currentBook=store.getState().currentBook;
-    return {type:"ADDFINISHED",
-            payload:currentBook
-           };
+          const currentBook=store.getState().currentBook;
+          return {type:"ADDFINISHED",
+                  payload:currentBook
+                };
         case "reading":
            return {
              type: "ADDFINISHED",

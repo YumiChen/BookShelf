@@ -74,10 +74,9 @@ p
     width: 100vw
     margin: .5em 0
   & .book
-    // padding: 1em
-    width: 15vw
+    width: 10em
     overflow: hidden
-    height: 22vw
+    height: 17em
     margin: 1vw 1vw
     min-height: 15em
     background-color: rgba(255,255,255,.5)
@@ -144,8 +143,7 @@ p
 .shelfPage
   .options
     text-align: right
-    width: 80vw
-    margin: 0 auto
+    margin: 0 5vw
     .logout
       cursor: pointer
       color: $brown
@@ -168,7 +166,7 @@ p
 
   
 .slick-slider
-  height: 30vh
+  height: 13em
   border: solid 2px white
   margin: .5em 5vw
   border-radius: 10px
@@ -183,7 +181,7 @@ p
         // margin: .2em
         .book
           top: 0.8em
-          width: 60%
+          width: 9em
           height: 100%
           
           // position: absolute
@@ -199,7 +197,7 @@ p
               right: 0
               // right: -2em
               &:hover
-                color: blue
+                color: $red
             & div
               position: absolute
               top: 2.2em
@@ -446,10 +444,24 @@ p
     // height: 30vh
   .bookInfo .bookInfo_top .bookinfo_book .bookInfo_cover
     height: 70%
+  .searchedBooks
+    min-width: 60em
+    width: 60em
+    margin: 0 auto
+    .book
+      width: 20%
+      height: 19em
   .shelfPage
-    padding: 0 5em
+    padding: 0 7em
     min-height: 40em
     min-width: 45em
+    .shelves
+      & .book
+        width: 20%
+        padding: 0 .5em
+    .options
+      width: 65vw
+      margin: 0 auto
   .slick-slider .slick-list .slick-track .slick-slide .book
     width: 50%
     min-width: 10em

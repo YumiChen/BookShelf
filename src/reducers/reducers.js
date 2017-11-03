@@ -1,27 +1,6 @@
 import redux from "redux";
 import {setData, loadData} from "../firebaseData";
 
-// function loadStore(propName){
-//   try{
-//     let store = localStorage.getItem("books");
-//     if(store===null) return [];
-//     store = JSON.parse(store);
-//     switch(propName){
-//       case "readingBooks":
-//         return store.readingBooks;
-//       case "finishedBooks":
-//         return store.finishedBooks;
-//       case "wannaReadBooks":
-//         return store.wannaReadBooks;
-//       default:
-//         return [];
-//     }
-//   }catch(err){
-//     return [];
-//   }
-// }
-
-
 const reducers = {
     reducer_index:
     (state=31,action)=>{
@@ -44,7 +23,7 @@ const reducers = {
         if(action.type == "LOGIN" && action.payload!=null){
           return action.payload;
         }else if(action.type == "LOGOUT"){
-          return null;
+          return action.payload;
         }
         else{
           // initilization
@@ -56,7 +35,7 @@ const reducers = {
       if(action.type=="SEARCH" && Object.prototype.toString.call( action.payload ) === "[object Object]"){
         return  action.payload || state;
       }else if(action.type=="SEARCHMORE" && Object.prototype.toString.call( action.payload ) === "[object Array]"){
-        let result = state;
+        let result = JSON.parse(JSON.stringify(state));
         result.items = result.items.concat(action.payload);
         return result;
       }else if(action.type=="RESETSEARCHEDBOOKS"){
@@ -67,12 +46,11 @@ const reducers = {
     },
     reducer_reading_books: (state=[],
     action)=>{
-      // console.log("readingBooks: "+state);
       if(action.type=="SETREADING"){
         return action.payload;
       }
 
-      let books = state;
+      let books = state.slice();
       switch(action.type){
         case "ADDREADING":
          books.unshift(action.payload);
@@ -91,7 +69,7 @@ const reducers = {
         return action.payload;
       }
 
-      let books = state;
+      let books = state.slice();
       switch(action.type){
         case "ADDFINISHED":
          books.unshift(action.payload);
@@ -110,7 +88,7 @@ const reducers = {
         return action.payload;
       }
 
-      let books = state;
+      let books = state.slice();
       switch(action.type){
         case "ADDWANNAREAD":
          books.unshift(action.payload);

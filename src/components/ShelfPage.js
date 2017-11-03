@@ -3,21 +3,29 @@ import {connect} from "react-redux";
 import Shelf from "./Shelf";
 import {bindActionCreators} from "redux";
 import action_currentUid from "../actions/action_currentUid";
+import debounce from "../functions/debounce";
 
 class ShelfPage extends Component{
     constructor(props){
       super(props);
-      // this.state = {user: null};
+    }
+    componentWillmount(){
+      window.removeEventListener("resize",
+         debounce(()=>{this.forceUpdate();},500)
+         );
     }
     componentDidMount(){
       document.body.scrollTop = document.documentElement.scrollTop = 0;
+      window.addEventListener("resize",
+      debounce(()=>{this.forceUpdate();},500)
+      );
     }
     logout(){
-      this.props.setCurrentUid("logout");
-      sessionStorage.removeItem("user");
+      const self = this;
       // logout from firebase
       firebase.auth().signOut().then(function() {
-
+        sessionStorage.removeItem("user");
+        self.props.setCurrentUid("logout");
       }, function(error) {
         // An error happened.
       });
@@ -25,7 +33,9 @@ class ShelfPage extends Component{
     render(){
       this.logout = this.logout.bind(this);
       return (<div className="shelfPage">
+      <div className="shelves">
           <p className="options"><span className="logout" onClick={this.logout}>log out</span></p>
+          
           <div>
           <span className="shelfName">Reading</span>
           <Shelf books={this.props.readingBooks} group="reading"
@@ -41,7 +51,9 @@ class ShelfPage extends Component{
           <span className="shelfName">Wishlist</span>
           <Shelf books={this.props.wannaReadBooks} group="wannaRead"
             endpoint="wannaRead/"/>
-        </div></div>);
+        </div>
+        </div>
+        </div>);
     }
   }
   
