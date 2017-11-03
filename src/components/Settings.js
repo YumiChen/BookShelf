@@ -26,7 +26,7 @@ class Settings extends Component{
     updateFinishedBooks(event){
       event.persist();
       const self = this, e = event ;
-     promptAlert("Confirmation","Do you want to move this book to finished section?","Your bookshelf is updated :)!","The action is canceled!",()=>{     this.props.addFinishedBooks(event);
+     promptAlert("Confirmation","Do you want to move this book to finished section?","Your bookshelf is updated :)!","The action is canceled!",()=>{     
       self.props.addFinishedBooks(e);
       self.props.removeBooks(e);
      });
@@ -34,7 +34,7 @@ class Settings extends Component{
     updateWannaReadBooks(event){
       event.persist();
       const self = this, e = event ;
-      promptAlert("Confirmation","Do you want to move this book to wishlist section?","Your bookshelf is updated :)!","The action is canceled!",()=>{         this.props.addWannaReadBooks(event);
+      promptAlert("Confirmation","Do you want to move this book to wishlist section?","Your bookshelf is updated :)!","The action is canceled!",()=>{
         self.props.addWannaReadBooks(e);
         self.props.removeBooks(e);
       });
@@ -52,17 +52,18 @@ class Settings extends Component{
             showDrop = this.showDrop.bind(this);
             this.updateReadingBooks = this.updateReadingBooks.bind(this);
             this.updateFinishedBooks = this.updateFinishedBooks.bind(this);
-            this.updateWannaReadBooks = this.updateWannaReadBooks.bind(this);        this.removeBooks = this.removeBooks.bind(this);
+            this.updateWannaReadBooks = this.updateWannaReadBooks.bind(this);
+            this.removeBooks = this.removeBooks.bind(this);
       return (
         <div className="settings">
           <i className="fa fa-cog cog" aria-hidden="true" onClick={showDrop} />
           {this.state.showDrop?
             <div data-group={group}>
-           {group=="reading"?"":<p data-group={group} data-target="reading" name={name} onClick={this.updateReadingBooks}>Move to reading</p>}
-           {group=="finished"?"":<p data-group={group} data-target="finished" name={name} onClick={this.updateFinishedBooks}>Move to finished</p>}
-           {group=="wannaRead"?"":<p data-group={group} data-target="finished" name={name} onClick={this.updateWannaReadBooks}>Move to wannaRead</p>}
+           {group=="reading"?null:<p data-group={group} data-target="reading" name={name} onClick={this.updateReadingBooks}>Move to reading</p>}
+           {group=="finished"?null:<p data-group={group} data-target="finished" name={name} onClick={this.updateFinishedBooks}>Move to finished</p>}
+           {group=="wannaRead"?null:<p data-group={group} data-target="finished" name={name} onClick={this.updateWannaReadBooks}>Move to wannaRead</p>}
            <p data-group={group} name={name} onClick={this.removeBooks}>Delete</p>
-          </div>:""}
+          </div>:null}
         </div>
         );
         }

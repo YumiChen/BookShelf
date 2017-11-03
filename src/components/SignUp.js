@@ -139,9 +139,11 @@ class SignUp extends Component{
       this.signIn = this.signIn.bind(this);
       this.changeUI = this.changeUI.bind(this);
       
-      return (<form className="sign" onSubmit={signUp?this.signUp:this.signIn
+      return (
+        <div className="signUp">
+        {this.state.loading?<LoadingAnimation/>:null}
+        <form className="sign" onSubmit={signUp?this.signUp:this.signIn
             }>
-            {this.state.loading?<LoadingAnimation/>:null}
           <h2>{signUp?"Sign Up":"Sign In"}</h2>
           <div>
           <label>Email: </label>
@@ -157,7 +159,9 @@ class SignUp extends Component{
           {signUp?
             <p>Already have an account?<span onClick={this.changeUI} data-val="false"> Sign In</span></p>:
             <p>Don't have an account?<span onClick={this.changeUI} data-val="true"> Sign Up</span></p>}
-        </form>);
+        </form>
+      </div>
+      );
     }
   }
 

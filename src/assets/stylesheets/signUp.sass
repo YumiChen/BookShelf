@@ -1,0 +1,49 @@
+// signUp
+.signUp
+  width: 100vw
+  height: 100%
+  .sign
+    font-size: 1.2em
+    text-align: center
+    display: inline-block
+    left: 50%
+    transform: translateX(-50%)
+    & h2
+      background-color: $blue
+      color: white
+      padding: 0.1em 0
+      border-radius: .3em
+    & div
+      text-align: right
+      margin: .4em auto
+    & label
+      display: inline-block
+      width: 5em
+      text-align: left
+    & input
+      border: solid 1px #c4c8ce
+      border-radius: .3em
+      padding: 0.3em
+    & input[type="submit"]
+      background-color: #f9af39
+      border: none
+      color: white
+      padding: .2em 1em
+      margin: .5em 0
+      font-size: .9em
+      cursor: pointer
+      &:hover
+        background-color: $red
+    & p span
+      color: $red
+      cursor: pointer
+      text-decoration: underline
+      &:hover
+        color: #f9af39
+    & .hint
+      color: $red
+      font-size: .7em
+      text-align: right
+      animation: fadeIn 1s 1 both
+      & i
+        color: $red

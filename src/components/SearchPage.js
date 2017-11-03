@@ -9,6 +9,7 @@ import action_searchedBooks from "../actions/action_searchedBooks";
 import action_setIndex from "../actions/action_setIndex";
 import action_searchedTerm from "../actions/action_searchedTerm";
 import action_setBooks from "../actions/action_setBooks";
+import Waypoint from "react-waypoint";
 
 // get searched term from search bar
 class SearchPage extends Component{
@@ -37,7 +38,7 @@ class SearchPage extends Component{
       }
     }
     componentWillUnmount(){
-      window.onscroll = null;
+      // window.onscroll = null;
     }
     componentDidUpdate(prevProps,prevState){
       // it should be ready
@@ -56,11 +57,11 @@ class SearchPage extends Component{
             hint = "No more results";
           }
           this.setState({hint: hint, isBack:false});
-          window.onscroll = (function(ev) {
-            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-             this.searchMore();
-              }
-          }).bind(this);
+        //   window.onscroll = (function(ev) {
+        //     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+        //      this.searchMore();
+        //       }
+        //   }).bind(this);
         }
       }
 
@@ -87,11 +88,11 @@ class SearchPage extends Component{
     componentDidMount(){
       if(this.props.searchedTerm){
         document.getElementById("searchInput").value = this.props.searchedTerm;
-        window.onscroll = (function(ev) {
-          if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-           this.searchMore();
-            }
-        }).bind(this);
+      //   window.onscroll = (function(ev) {
+      //     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+      //      this.searchMore();
+      //       }
+      //   }).bind(this);
       }
     }
     search(event){
@@ -110,6 +111,9 @@ class SearchPage extends Component{
         );
     }
     searchMore(){
+      if(this.props.searchedBooks.items.length==0){
+        return;
+      }
       this.props.setIndex();
       this.props.searchMore(this.props.index);
       this.setState({hint: "Searching...", isBack:true});
@@ -147,9 +151,12 @@ class SearchPage extends Component{
           {this.props.searchedBooks.items.length != 0?<i onClick ={this.scrollToTop} className="fa fa-arrow-circle-o-up scrollToTop" aria-hidden="true"></i>:null}
           {(total && total > 0)?<p className="searchHint">{"共 "+total+" 筆結果"}<span className="clear" onClick={this.clear}>Clear</span></p>:null}
             {books}
+          <Waypoint onEnter={this.searchMore}
+            >
           <p className={this.state.hint == "Search more..."?"searchHint clickable":"searchHint"}
               onClick = {this.state.hint == "Search more..."?this.searchMore:null}
             >{this.state.hint}</p>
+          </Waypoint>
           </div>
           {this.state.hint == "Searching..."?<LoadingAnimation/>:null}
       </div>

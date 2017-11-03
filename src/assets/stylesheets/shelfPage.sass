@@ -1,0 +1,80 @@
+.shelfPage
+  .options
+    text-align: right
+    margin: 0 5vw
+    .logout
+      cursor: pointer
+      color: $brown
+      text-decoration: underline
+      &:hover
+        color: $red
+
+.shelfName
+  color: skyblue
+  position: absolute
+  background-color: white
+  margin-left: 5vw
+  z-index: 1
+  padding: .1em 1em
+  border-radius: 10px 0 10px 0
+  box-shadow: 1px 1px 2px 2px rgba(0,0,0,.025)
+  
+.slider
+  height: 13em
+  border: solid 2px white
+  margin: .5em 5vw
+  border-radius: 10px
+  .slick-slider
+    width: 100%
+    height: 100%
+    .slick-list
+      height: 100%
+      padding: .2em 2.5em
+      .slick-track
+        height: 100%
+        .slick-slide
+          height: 90%
+          .book
+            top: 0.8em
+            width: 9em
+            height: 100%
+            font-size: .5em
+            & .settings
+              & .cog
+                font-size: 3em
+                z-index: 1
+                position: absolute
+                cursor: pointer
+                right: 0
+                &:hover
+                  color: $red
+              & div
+                display: inline-block
+                position: absolute
+                top: 2.2em
+                width: 90%
+                z-index: 2
+                right: 0em
+                background-color: rgba(255,255,255,.9)
+                border: solid 1px 
+                & p
+                  cursor: pointer
+                  padding: .2em .5em
+                  border-top: 1px dashed
+                  &:hover
+                    background-color: skyblue
+                    color: white
+                    border-color: $brown
+                & p:nth-child(1)
+                  border-top: 0px solid
+            & .cover
+              box-shadow: 1px 1px 2px 2px rgba(0,0,0,.2)
+              top: 1em
+              width: 100%
+              height: 80%
+              background-position: 50% 50%
+              background-size: 100% 100%
+              background-repeat: no-repeat
+    
+
+      

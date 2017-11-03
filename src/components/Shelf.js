@@ -16,29 +16,26 @@ let Shelf =(props)=>{
       settings.slidesToShow = 2;
       settings.slidesToScroll = 2;
   }
-  let books = []; 
-    if( Object.prototype.toString.call( props.books ) === '[object Array]'){ 
+  let books = null; 
+    if( Object.prototype.toString.call( props.books ) === '[object Array]' && props.books.length>0){ 
       books = props.books.map((book,index)=>{ 
-  return (<div key={index}><Book 
-                 key={index} 
-                 name={index} 
-                 data-index={index} 
-                 info={book}
-                 group={props.group}
-                 settings={true}
-                 endpoint={props.endpoint}
-                 onClick={props.select}
-            /></div>);   
+         return (<div key={index}><Book 
+                        key={index} 
+                        name={index} 
+                        data-index={index} 
+                        info={book}
+                        group={props.group}
+                        settings={true}
+                        endpoint={props.endpoint}
+                        onClick={props.select}
+                    /></div>);   
     });                                       
   }
   
   return (
       <div className="slider">
-      <Slider {...settings}>
-        {books}
-      </Slider>
+      {books?<Slider {...settings}>{books}</Slider>:null}
       </div>);
 }
-  // {books==[]?books:<p>There's no book here</p>}
-  
+
   module.exports = Shelf;

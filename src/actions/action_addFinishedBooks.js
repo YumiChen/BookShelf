@@ -14,6 +14,7 @@ const action_addFinishedBooks = (event)=>{
              payload: store.getState().readingBooks[id]
            };
         case "finished":
+            console.log("Finished");
             return {
              type: "ADDFINISHED",
              payload: store.getState().finishedBooks[id]

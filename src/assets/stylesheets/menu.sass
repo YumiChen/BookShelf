@@ -1,0 +1,44 @@
+.menu
+  text-align: right
+  position: fixed
+  right: 2em
+  bottom: 2em
+  z-index: 2
+  & p
+    cursor: pointer
+    background-color: $orange
+    color: white
+    border-radius: 1em
+    text-align: right
+    padding: 0.5em 1em .5em 2em
+    margin: .5em 0 !important
+    box-shadow: 2.5px 2.5px 5px 1px rgba(0,0,0,.2)
+    &:hover
+      background-color: rgb(255, 50, 112)
+  & .plus
+    cursor: pointer
+    color: white
+    font-size: 2em
+    background-color: rgb(255, 50, 112)
+    border-radius: 10em
+    padding: .25em .35em
+    text-shadow: 2px 2px 5px rgba(0,0,0,.5)
+    box-shadow: 2.5px 2.5px 5px 1px rgba(0,0,0,.5)
+  & span a
+    color: white
+  
+// animation for css transition group
+.menu-enter 
+  transform: translateX(2em)
+  opacity: 0
+
+.menu-enter-active 
+  opacity: 1
+  transform: translateX(0em)
+
+.menu-leave 
+  opacity: 1
+
+.menu-leave-active 
+  opacity: 0
+  transform: translateX(1em)

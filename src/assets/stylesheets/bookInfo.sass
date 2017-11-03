@@ -1,0 +1,44 @@
+.bookInfo
+  padding: 1.5em
+  .bookinfo_summary
+    background-color: rgba(255,255,255,.5)
+    padding: 1em
+    border-radius: .5em
+  .bookInfo_top
+    display: flex
+    .bookinfo_detail
+      padding: 1em
+      width: 60%
+      font-weight: bold
+      & p
+        margin: 0.2em auto .2em auto
+      & .previewLink
+        background-color: $red
+        color: white
+        padding: .2em 1em
+        border-radius: .7em
+      & .bookinfo_title
+        color: $red
+        font-size: 1.3em
+    .bookinfo_book
+      width: 40%
+      height: 33vw
+      .bookInfo_cover
+        position: absolute
+        box-shadow: 1px 1px 2px 2px rgba(0,0,0,.2)
+        top: 5%
+        left: 50%
+        transform: translateX(-50%)
+        width: 50%
+        height: 77%
+        background-size: 100% 100%
+        background-repeat: no-repeat
+        background-position: 50% 50%
+      
+.status
+  background-color: $orange
+  border-radius: 2em
+  color: white
+  padding: .2em 0em
+  width: 90%
+  margin: auto
