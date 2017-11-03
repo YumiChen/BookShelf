@@ -4,10 +4,12 @@ import Shelf from "./Shelf";
 import {bindActionCreators} from "redux";
 import action_currentUid from "../actions/action_currentUid";
 import debounce from "../functions/debounce";
+import LoadingAnimation from "./LoadingAnimation";
 
 class ShelfPage extends Component{
     constructor(props){
       super(props);
+      this.state = {loading: false};
     }
     componentWillmount(){
       window.removeEventListener("resize",
@@ -22,9 +24,11 @@ class ShelfPage extends Component{
     }
     logout(){
       const self = this;
+      this.setState({loading: true});
       // logout from firebase
       firebase.auth().signOut().then(function() {
         sessionStorage.removeItem("user");
+        self.setState({loading:false});
         self.props.setCurrentUid("logout");
       }, function(error) {
         // An error happened.
@@ -33,6 +37,7 @@ class ShelfPage extends Component{
     render(){
       this.logout = this.logout.bind(this);
       return (<div className="shelfPage">
+      {this.state.loading?<LoadingAnimation/>:null}
       <div className="shelves">
           <p className="options"><span className="logout" onClick={this.logout}>log out</span></p>
           
