@@ -42,3 +42,29 @@
   padding: .2em 0em
   width: 90%
   margin: auto
+
++mq('desktop',min)
+  .bookInfo
+    padding: 1.5em 8em
+  .bookInfo .bookInfo_top .bookinfo_book
+    // height: 30vh
+  .bookInfo .bookInfo_top .bookinfo_book .bookInfo_cover
+    height: 70%
++mq('phone-wide',max)
+  #container
+    & .bookInfo
+      & .bookInfo_top
+        display: block
+        & .bookinfo_detail, .bookInfo_cover
+          width: 100%
+        & .bookinfo_book
+          width: 35vw
+          height: calc(35vw * 1.8)
+          margin: 0 auto
+          & .bookInfo_cover
+            min-width: 40vw
+            height: 85%
+    & .status
+      left: 50%
+      transform: translateX(-50%)
+      width: 110%

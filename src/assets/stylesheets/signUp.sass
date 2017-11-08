@@ -47,3 +47,13 @@
       animation: fadeIn 1s 1 both
       & i
         color: $red
+
++mq('desktop',min)
+  .signUp
+    & .sign
+      & h2
+        min-width: 14em
+      & label
+        width: 40%
+      & input[type="email"], input[type="password"]
+        width: 60%

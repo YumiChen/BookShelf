@@ -11,6 +11,10 @@ class Settings extends Component{
     constructor(props){
       super(props);
       this.state={showDrop:false};
+      this.updateReadingBooks = this.updateReadingBooks.bind(this);
+      this.updateFinishedBooks = this.updateFinishedBooks.bind(this);
+      this.updateWannaReadBooks = this.updateWannaReadBooks.bind(this);
+      this.removeBooks = this.removeBooks.bind(this);
     }
     showDrop(){
       this.setState({showDrop:!this.state.showDrop});
@@ -50,10 +54,6 @@ class Settings extends Component{
       const group = this.props.group,
             name = this.props.name,
             showDrop = this.showDrop.bind(this);
-            this.updateReadingBooks = this.updateReadingBooks.bind(this);
-            this.updateFinishedBooks = this.updateFinishedBooks.bind(this);
-            this.updateWannaReadBooks = this.updateWannaReadBooks.bind(this);
-            this.removeBooks = this.removeBooks.bind(this);
       return (
         <div className="settings">
           <i className="fa fa-cog cog" aria-hidden="true" onClick={showDrop} />

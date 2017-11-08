@@ -95,3 +95,31 @@
   cursor: pointer
   &:hover
     color: $orange
+
++mq('desktop',min)
+  .searchedBooks
+    min-width: 60em
+    width: 60em
+    margin: 0 auto
+    .book
+      width: 20%
+      height: 19em
+  .searchBar
+    width: 40em
+    & input[type="text"]
+      width: 70%
+      margin-right: 2em
+
++mq('phone-wide',max)
+  #container
+    & .searchBar
+      width: 90%
+      & input[type="text"]
+        width: 60%
+    & .searchedBooks
+      & .book
+        min-width: 8.5em
+        width: 43%
+        height: 37vh
+        & p
+          font-size: .7em

@@ -10,6 +10,7 @@ class ShelfPage extends Component{
     constructor(props){
       super(props);
       this.state = {loading: false};
+      this.logout = this.logout.bind(this);
     }
     componentWillmount(){
       window.removeEventListener("resize",
@@ -35,7 +36,6 @@ class ShelfPage extends Component{
       });
     }
     render(){
-      this.logout = this.logout.bind(this);
       return (<div className="shelfPage">
       {this.state.loading?<LoadingAnimation/>:null}
       <div className="shelves">

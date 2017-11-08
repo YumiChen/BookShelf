@@ -54,13 +54,10 @@ const reducers = {
       switch(action.type){
         case "ADDREADING":
          books.unshift(action.payload);
-        console.log("add reading");
-        console.log(books);
          sweetAlert("Success!", "The book is added!", "success");
          return books;
         case "REMOVEREADING":
           books.splice(action.payload,1);
-          console.log(books);
           return books;
         default:
           return state

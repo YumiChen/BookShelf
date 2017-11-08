@@ -76,5 +76,27 @@
               background-size: 100% 100%
               background-repeat: no-repeat
     
-
++mq('desktop',min)
+  .shelfPage
+    padding: 0 7em
+    min-height: 40em
+    min-width: 45em
+    .shelves
+      & .book
+        width: 20%
+        padding: 0 .5em
+    .options
+      width: 65vw
+      margin: 0 auto
+  .slick-slider .slick-list .slick-track .slick-slide .book
+    width: 50%
+    min-width: 10em
       
++mq('phone-wide',max)
+  #container
+    & .slick-slide
+      & .book
+        width: 60%
+        min-width: 8em
+        & .settings div p
+          font-size: 1em

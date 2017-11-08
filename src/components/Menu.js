@@ -1,5 +1,5 @@
 import {Component} from "react";
-import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
+import {CSSTransitionGroup} from 'react-transition-group';
 import {Link} from "react-router-dom";
 
 class Menu extends Component{
@@ -8,6 +8,7 @@ class Menu extends Component{
       this.state={showMenu:false,
                  style: {transformOrigin:"50% 50%",
                         transform: "rotate(0deg)"} };
+      this.showMenu = this.showMenu.bind(this);
     }
     showMenu(){
       let flag = this.state.showMenu;
@@ -24,9 +25,8 @@ class Menu extends Component{
     }
   }
     render(){
-      const props = this.props;
-      this.showMenu = this.showMenu.bind(this);
-      const eltoshow = this.props.notLoggedIn?
+      const props = this.props,
+            eltoshow = this.props.notLoggedIn?
       <p><Link to="/bookshelf">Log in to save books!</Link></p>:(<div>
         <p onClick={props.addReadingBooks} data-group="current">I'm reading this!</p>
         <p onClick={props.addFinishedBooks} data-group="current">I've read this!</p>
@@ -38,7 +38,7 @@ class Menu extends Component{
             transitionEnterTimeout={1000}
             transitionLeaveTimeout={1000}
           >
-          {this.state.showMenu?eltoshow:""}
+          {this.state.showMenu?eltoshow:null}
           </CSSTransitionGroup>
             <i className="fa fa-plus plus" aria-hidden="true" style={this.state.style} onClick={this.showMenu}></i>
         </div>

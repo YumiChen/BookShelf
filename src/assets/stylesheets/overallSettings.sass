@@ -1,0 +1,62 @@
+*
+  // border: solid 1px
+  box-sizing: border-box
+  position: relative
+  font-family: Ubuntu, 微軟正黑體
+  text-decoration: none
+  color: $brown
+  transition: all .4s
+
+html, body
+  margin: 0
+  min-height: 100vh
+  overflow-x: hidden
+
+body
+  padding: 3em 0 2em 0
+  // background-color: #e1eff2
+  background-image: url(https://s26.postimg.org/4v95smc95/fog-1535201_1920.jpg)
+  background-size: cover
+  background-repeat: no-repeat
+  &::-webkit-scrollbar-track
+    border: 1px solid $blue
+    background-color: rgba(255,255,255,0.2)
+  &::-webkit-scrollbar
+    width: 6px
+    background-color: rgba(255,255,255,0.2)
+  &::-webkit-scrollbar-thumb
+    background-color: $blue
+  
+p
+  margin: 0
+  text-align: center
+      
+%btn
+  background-color: $orange
+  padding: .1em .5em
+  color: white
+  border-radius: 5px
+  margin: 0.1em
+
+@keyframes fadeIn
+  0%
+    opacity: 0
+  100%
+    opacity: 1
+
+.swal2-buttonswrapper
+  button
+    border: 0px
+    margin: 0 1em
+    padding: 0.5em 1.2em
+    background-color: $orange
+    border-radius: .2em
+    color: white
+    &:hover
+      background-color: $red
+
++mq('phone-wide',max)
+  body,html
+    min-height: calc(100vw * 1.7)
+    min-width: 100vw
+    height: 100vh

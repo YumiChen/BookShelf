@@ -17,7 +17,8 @@ class Book extends Component{
         isbn = info.industryIdentifiers?info.industryIdentifiers[0].identifier:"-1",
     cover = info.imageLinks?{
     backgroundImage: 'url(' + info.imageLinks.smallThumbnail + ')'
-  }:null,     group=props.group,name=props.name,
+  }:null,
+        group=props.group,name=props.name,
         title=info.title,
         isPortrait = (window.innerWidth<window.innerHeight);
   
@@ -37,7 +38,7 @@ class Book extends Component{
     );
     }
   }
-  // &&isPortrait
+
   
   const mapDispatchToProps_selectBook = (dispatch)=>{
     return bindActionCreators({select: action_selectBook},dispatch);

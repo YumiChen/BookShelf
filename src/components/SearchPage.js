@@ -17,6 +17,11 @@ class SearchPage extends Component{
       super(props);
       const len = this.props.searchedBooks.items?this.props.searchedBooks.items.length:null,
             fullLen = this.props.searchedBooks.totalItems;
+      this.search = this.search.bind(this);
+      this.searchMore = this.searchMore.bind(this);
+      this.scrollToTop = this.scrollToTop.bind(this);
+      this.clear = this.clear.bind(this);
+      
       let hint;
       if(fullLen!=null && len != null){
         if(fullLen==0 || this.props.searchedBooks.items === undefined){
@@ -129,10 +134,6 @@ class SearchPage extends Component{
       this.setState({hint: "Click send to search..."});
     }
     render(){
-      this.search = this.search.bind(this);
-      this.searchMore = this.searchMore.bind(this);
-      this.scrollToTop = this.scrollToTop.bind(this);
-      this.clear = this.clear.bind(this);
       let books = [], total = this.props.searchedBooks.totalItems;
 
         if(this.props.searchedBooks.items){

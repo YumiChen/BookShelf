@@ -14,6 +14,10 @@ class SignUp extends Component{
         passwordhint:"",
         loading: false
       };
+      // binding this
+      this.signUp = this.signUp.bind(this);
+      this.signIn = this.signIn.bind(this);
+      this.changeUI = this.changeUI.bind(this);
     }
     signUp(event){   
       event.preventDefault();
@@ -134,10 +138,6 @@ class SignUp extends Component{
     render(){
       const signUp = this.state.signUp,
             props = this.props;
-      // binding this
-      this.signUp = this.signUp.bind(this);
-      this.signIn = this.signIn.bind(this);
-      this.changeUI = this.changeUI.bind(this);
       
       return (
         <div className="signUp">
