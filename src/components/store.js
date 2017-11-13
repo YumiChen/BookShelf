@@ -12,7 +12,7 @@ store.dispatch(action_setBooks("wannaReadBooks"));
 
 store.subscribe(()=>{
   const action = store.getState().lastAction;
-  console.log(action);
+  // console.log(action);
   if(action == "ADDFINISHED" || action == "ADDREADING" ||
       action == "ADDWANNAREAD" || action == "REMOVEREADING" ||
       action == "REMOVEFINISHED" || action == "REMOVEWANNAREAD"){

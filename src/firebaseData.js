@@ -20,7 +20,7 @@ function loadData(propName,fn){
   const uid = sessionStorage.getItem("user");
   db.ref('/books/' + uid).once('value').then(function(snapshot) {
     let result = snapshot.toJSON()===null?[]:snapshot.toJSON();
-    // console.log(result);
+    
     if(result instanceof Array) return result;
     switch(propName){
       case "readingBooks":

@@ -27,7 +27,7 @@ class SignUp extends Component{
       });
       const email = document.getElementById("email").value,
             password = document.getElementById("password").value,
-            setCurrentUid = this.props.setCurrentUid,
+            setCurrentUid = this.props.setCurrentUid.bind(this),
             self = this;
       let pass = true;
       
@@ -64,21 +64,22 @@ class SignUp extends Component{
           store.dispatch(action_setBooks("finishedBooks"));
           store.dispatch(action_setBooks("wannaReadBooks"));
           self.setState({loading: false});
-          // setTimeout(()=>{
-          //   setCurrentUid("login");
-          // },1000);
+          setCurrentUid("login");
+          sweetAlert("Success!", "Sign Up success!", "success");
         })
       .catch(function(error) {
       // Handle Errors here.
       const errorCode = error.code,
           errorMessage = error.message;
-          console.log(errorCode);
-          console.log(errorMessage);
+          // console.log(errorCode);
+          // console.log(errorMessage);
           switch(errorCode){
           case "auth/weak-password":
             self.setState({passwordhint: errorMessage});
+            break;
           case "auth/email-already-in-use":
             self.setState({emailhint: "this email is already registerd"});
+            break;
           }
           self.setState({loading: false});
         });
@@ -90,7 +91,7 @@ class SignUp extends Component{
         passwordhint:""
       });
       const email = document.getElementById("email").value,password = document.getElementById("password").value,
-            setCurrentUid = this.props.setCurrentUid,
+            setCurrentUid = this.props.setCurrentUid.bind(this),
             self = this;
       let pass = true;
       if(email===""){
@@ -116,9 +117,8 @@ class SignUp extends Component{
         store.dispatch(action_setBooks("finishedBooks"));
         store.dispatch(action_setBooks("wannaReadBooks"));
         self.setState({loading: false});
-        // setTimeout(()=>{
-        //   setCurrentUid("login");
-        // },1000);
+        setCurrentUid("login");
+        sweetAlert("Success!", "Sign In success!", "success");
       })
       .catch(function(error) {
         // Handle Errors here.
