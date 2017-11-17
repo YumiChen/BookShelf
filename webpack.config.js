@@ -1,41 +1,64 @@
 const webpack = require('webpack');
 const path = require('path');
+const autoprefixer = require("autoprefixer");
 
-// including sass
 module.exports = [{
-  entry: [
-    'eventsource-polyfill',
-    'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true',
-    './src/index'],
+  entry: {
+    app:     
+      [
+        'eventsource-polyfill',
+        './src/index'
+      ]
+  },
   output: {
     path: path.join(__dirname, '/public'),
-    publicPath: '/',
     filename: 'bundle.js'
   },
   module: {
-    // exclude: /node_modules/,
-    loaders: [
-      { test: /\.js?$/, loader: 'babel-loader', exclude: /node_modules/ },
-      { test: /\.sass$/, loader: 'style-loader!css-loader!sass-loader', exclude: /node_modules/ },
+    rules: [
+      { test: /\.js?$/, 
+        use: ["babel-loader"], 
+        exclude: /node_modules/,
+        },
+      { test: /\.sass$/, 
+        use: [
+          'style-loader',
+          {loader:'css-loader',
+            options:{
+              minimize: true
+            }
+          },
+          'postcss-loader',
+          'sass-loader'
+        ], 
+        exclude: /node_modules/ 
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 10000 /* file smaller than 10kB would be transformed into base64 */
+            }
+          }
+        ]
+      }
     ]
-    // query: {
-    //   presets: ["react", "es2015", "stage-1"]
-    // }
   },
   resolve: {
     extensions: ['.js','.sass', ".jsx"]
-  }
-  ,devServer: {
-  contentBase: './public',
-  hot: true
-}
-  ,plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.ProvidePlugin({
-      React: 'react',
-      ReactDOM:'react-dom'
-    }),
+  },
+  devServer: {
+    port: process.env.PORT || 8080,
+    host: "localhost",
+    contentBase: "./public",
+    historyApiFallback: true,
+    hot: true,
+    inline: true
+  },
+  plugins: [
+    new webpack.NamedModulesPlugin(),
     new webpack.NoErrorsPlugin()
-    // new webpack.NoEmitOnErrorsPlugin()
   ]
 }];

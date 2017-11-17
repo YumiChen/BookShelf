@@ -1,4 +1,4 @@
-import {Component} from "react";
+import React,{Component} from "react";
 import SignUp from "./SignUp";
 import ShelfPage from "./ShelfPage";
 import {connect} from "react-redux";

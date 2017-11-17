@@ -1,4 +1,4 @@
-import {Component} from "react";
+import React,{Component} from "react";
 import {Provider} from "react-redux";
 import { Switch, Route, HashRouter } from "react-router-dom";
 import debounce from "../functions/debounce";

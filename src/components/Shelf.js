@@ -1,4 +1,4 @@
-import {Component} from "react";
+import React,{Component} from "react";
 import Book from "./Book";
 import Slider from "react-slick";
 // var Slider = require('react-slick');
