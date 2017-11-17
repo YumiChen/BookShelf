@@ -111,7 +111,7 @@ class SearchPage extends Component{
         );
     }
     searchMore(){
-      if(this.props.searchedBooks.items.length==0){
+      if(this.props.searchedBooks.items.length==0 || this.state.hint == "Searching..."){
         return;
       }
       this.props.setIndex();
@@ -142,13 +142,15 @@ class SearchPage extends Component{
               });     
         }                                   
     return (
-      <div>
+      <div id="searchPageScrollAncestor">
         <SearchBar onSubmit={this.search}/>
           <div className="searchedBooks" >
           {this.props.searchedBooks.items.length != 0?<i onClick ={this.scrollToTop} className="fa fa-arrow-circle-o-up scrollToTop" aria-hidden="true"></i>:null}
           {(total && total > 0)?<p className="searchHint">{"共 "+total+" 筆結果"}<span className="clear" onClick={this.clear}>Clear</span></p>:null}
             {books}
-          <Waypoint onEnter={this.searchMore}
+          <Waypoint 
+            scrollableAncestor={document.body}
+            onEnter={this.searchMore}
             >
           <p className={this.state.hint == "Search more..."?"searchHint clickable":"searchHint"}
               onClick = {this.state.hint == "Search more..."?this.searchMore:null}
