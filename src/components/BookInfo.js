@@ -91,7 +91,7 @@ class BookInfo extends Component{
             <p>{info.pageCount?"頁數: "+info.pageCount:null}</p>
             <p>{info.publishedDate?"出版日期: "+info.publishedDate:null}</p>
             <p>{info.publisher?"出版商: "+info.publisher:null}</p>
-            {info.previewLink?(<p><a className="previewLink" href={info.previewLink}>試閱連結</a></p>):null}
+            {info.previewLink?(<p><a className="previewLink"　target="_blank" href={info.previewLink}>試閱連結</a></p>):null}
             <p></p>
             <p></p>
           </div>
