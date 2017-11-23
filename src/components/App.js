@@ -27,9 +27,9 @@ class App extends Component{
             <div>
             <Nav/>
             <Switch>
-              <Route path="/:group/:isbn" component={BookInfo} onChange={this.reset}/>
+              <Route path="/:group/:id" component={BookInfo} onChange={this.reset}/>
               <Route path="/bookshelf" component={BookShelf} onChange={this.reset}/>
-              <Route path="/:isbn" component={BookInfo} onChange={this.reset}/>
+              <Route path="/:id" component={BookInfo} onChange={this.reset}/>
               <Route path="/" component={SearchPage} onChange={this.reset}/>
             </Switch>
             </div>

@@ -14,7 +14,7 @@ class Book extends Component{
     render(){
     const props = this.props,
           info = props.info.volumeInfo,
-        isbn = info.industryIdentifiers?info.industryIdentifiers[0].identifier:"-1",
+        id = props.info.id?props.info.id:"-1",
     cover = info.imageLinks?{
     backgroundImage: 'url(' + info.imageLinks.smallThumbnail + ')'
   }:null,
@@ -28,7 +28,7 @@ class Book extends Component{
        <div className="book" name={name} data-group={group}>
         { props.settings?<Settings
    group={group} name={name}/>:"" }
-      <Link to={"/"+props.endpoint+isbn} onClick={props.select} name={name} data-group={group}>
+      <Link to={"/"+props.endpoint+id} onClick={props.select} name={name} data-group={group}>
         <div className={cover?"cover":"cover noCover"} style={cover} name={name} data-group={group}></div>
         {props.settings?"":<div className="bookdes">
           <p name={name} data-group={group}>{title?(title.length>20?title.substring(0,20)+"...":title):null}</p>

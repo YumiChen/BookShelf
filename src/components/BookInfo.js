@@ -41,22 +41,23 @@ class BookInfo extends Component{
           break;
       }
     }else{
-      const isbn = props.match.params.isbn;
+      const id = props.match.params.id;
+      
       if(!eltoshow){
       props.readingBooks.forEach((book)=>{
-   if(isbn==book.volumeInfo.industryIdentifiers[0].identifier){
+   if(id==book.id){
         eltoshow = <p className="status">You're reading this book</p>;
         }
       });
       if(!eltoshow){
       props.finishedBooks.forEach((book)=>{
-   if(isbn==book.volumeInfo.industryIdentifiers[0].identifier){
+   if(id==book.id){
         eltoshow = <p className="status">You've finished reading this book</p>;
         }
       });
         if(!eltoshow){
       props.wannaReadBooks.forEach((book)=>{
-   if(isbn==book.volumeInfo.industryIdentifiers[0].identifier){
+   if(id==book.id){
         eltoshow = <p className="status">This book's in your wishlist</p>;
         }
       });
