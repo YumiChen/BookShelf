@@ -17,7 +17,7 @@ class App extends Component{
     this.reset = this.reset.bind(this);
   }
   reset(){
-
+    console.log("onChange");
   }
   render(){
     return (
@@ -27,10 +27,10 @@ class App extends Component{
             <div>
             <Nav/>
             <Switch>
-              <Route path="/:group/:id" component={BookInfo} onChange={this.reset}/>
-              <Route path="/bookshelf" component={BookShelf} onChange={this.reset}/>
-              <Route path="/:id" component={BookInfo} onChange={this.reset}/>
-              <Route path="/" component={SearchPage} onChange={this.reset}/>
+              <Route path="/:group/:id" component={BookInfo} onchange={this.reset}/>
+              <Route path="/bookshelf" component={BookShelf} onchange={this.reset}/>
+              <Route path="/:id" component={BookInfo} onchange={this.reset}/>
+              <Route path="/" component={SearchPage} onchange={this.reset}/>
             </Switch>
             </div>
           </HashRouter>

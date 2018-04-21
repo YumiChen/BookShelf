@@ -22,6 +22,7 @@
     cursor: pointer
     &:hover
       color: $orange
+      text-shadow: 2px 2px 5px rgba(0,0,0,.5)
   & .searchHint
     width: 100vw
     margin: .5em 0
@@ -70,6 +71,7 @@
   white-space: nowrap
   border-radius: 5px
   box-shadow: 0px 1px 5px 1.5px rgba(0,0,0,.1)
+  min-width: 350px;
   & i
     width: 10%
   & form
@@ -87,6 +89,7 @@
       box-shadow: inset 0px 1px 3px 1.5px rgba(0,0,0,.1)
     & input[type="submit"]
       width: 25%
+      min-width: 55px
       vertical-align: middle
       cursor: pointer
       margin: 0 .3em  
@@ -140,10 +143,15 @@
 
 +mq('phone-wide',max)
   #container
+    min-width: 315px
+    & .nav, .signUp
+      min-width: 315px
     & .searchBar
       width: 90%
+      min-width: unset
       & input[type="text"]
         width: 60%
+        min-width: unset
     & .searchedBooks
       & .book
         min-width: 8.5em

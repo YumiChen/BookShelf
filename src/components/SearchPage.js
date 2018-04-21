@@ -97,6 +97,7 @@ class SearchPage extends Component{
     }
     search(event,value){
         event.preventDefault();
+        debugger;
         const val = value?value:document.getElementById("searchInput").value;
         if(val == ""){
           this.setState({hint: "Please input the search term!"});

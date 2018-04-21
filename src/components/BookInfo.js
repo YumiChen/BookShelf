@@ -84,8 +84,8 @@ class BookInfo extends Component{
             <p className="bookinfo_subtitle">{info.subtitle}</p>
             {eltoshow}
             <p>{info.authors?info.authors.join(","):null}</p>
-            <p>分類: 
-  {info.categories?info.categories.join(","):null}
+            <p> 
+  {"分類: "+info.categories?info.categories.join(","):null}
             </p>
             <p>{info.industryIdentifiers?"ISBN: "+info.industryIdentifiers[0].identifier:""}</p>
             <p>{info.language?"語言: "+info.language:""}</p>
@@ -97,9 +97,8 @@ class BookInfo extends Component{
             <p></p>
           </div>
         </div>
-        <div className="bookinfo_summary"> Description:
-        <br/>
-   {props.currentBook.volumeInfo.description}
+        <div className="bookinfo_summary">
+          {props.currentBook.volumeInfo.description}
         </div>
       </div>)
     }
